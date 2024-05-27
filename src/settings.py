@@ -13,59 +13,86 @@ from dataset_tools.templates import (
 ##################################
 # * Before uploading to instance #
 ##################################
-PROJECT_NAME: str = None
-PROJECT_NAME_FULL: str = None
+PROJECT_NAME = "EndoNuke"
+PROJECT_NAME_FULL = "EndoNuke: Nuclei Detection in Endometrium Samples"
 HIDE_DATASET = True  # set False when 100% sure about repo quality
 
 ##################################
 # * After uploading to instance ##
 ##################################
-LICENSE: License = None
-APPLICATIONS: List[Union[Industry, Domain, Research]] = None
-CATEGORY: Category = None
+LICENSE: License = License.CC_BY_4_0()
+INDUSTRIES: List[Industry] = [Industry.Medical()]
+APPLICATIONS: List[Union[Industry, Domain, Research]] = [Industry.Medical(), Research.Biomedical()]
+CATEGORY: Category = Category.Medical()
 
-CV_TASKS: List[CVTask] = None
-ANNOTATION_TYPES: List[AnnotationType] = None
+CV_TASKS: List[CVTask] = [
+    CVTask.InstanceSegmentation(),
+    CVTask.SemanticSegmentation(),
+    CVTask.ObjectDetection(),
+]
+ANNOTATION_TYPES: List[AnnotationType] = [AnnotationType.InstanceSegmentation()]
 
-RELEASE_DATE: Optional[str] = None  # e.g. "YYYY-MM-DD"
+RELEASE_DATE: Optional[str] = "2022-06-01"  # e.g. "YYYY-MM-DD"
 if RELEASE_DATE is None:
     RELEASE_YEAR: int = None
 
-HOMEPAGE_URL: str = None
+HOMEPAGE_URL: str = "https://endonuke.ispras.ru/"
 # e.g. "https://some.com/dataset/homepage"
 
-PREVIEW_IMAGE_ID: int = None
+PREVIEW_IMAGE_ID: int = 16562502
 # This should be filled AFTER uploading images to instance, just ID of any image.
 
-GITHUB_URL: str = None
+GITHUB_URL: str = "https://github.com/dataset-ninja/nuclei-detection"
 # URL to GitHub repo on dataset ninja (e.g. "https://github.com/dataset-ninja/some-dataset")
 
 ##################################
 ### * Optional after uploading ###
 ##################################
-DOWNLOAD_ORIGINAL_URL: Optional[Union[str, dict]] = None
+DOWNLOAD_ORIGINAL_URL: Optional[Union[str, dict]] = "https://www.ispras.ru/conf/endonuke/data.zip"
 # Optional link for downloading original dataset (e.g. "https://some.com/dataset/download")
 
-CLASS2COLOR: Optional[Dict[str, List[str]] | Literal["predefined"]] = "predefined"
+CLASS2COLOR: Optional[Dict[str, List[str]] or Literal["predefined"]] = "predefined"
 # If specific colors for classes are needed, fill this dict (e.g. {"class1": [255, 0, 0], "class2": [0, 255, 0]})
 
 # If you have more than the one paper, put the most relatable link as the first element of the list
 # Use dict key to specify name for a button
-PAPER: Optional[Union[str, List[str], Dict[str, str]]] = None
+PAPER: Optional[Union[str, List[str], Dict[str, str]]] = "https://www.mdpi.com/2306-5729/7/6/75"
 BLOGPOST: Optional[Union[str, List[str], Dict[str, str]]] = None
-REPOSITORY: Optional[Union[str, List[str], Dict[str, str]]] = {
-    "GitHub": "some_link_to_repo_if_exists"
-}
+REPOSITORY: Optional[Union[str, List[str], Dict[str, str]]] = None
 
-CITATION_URL: Optional[str] = None
-AUTHORS: Optional[List[str]] = None
-AUTHORS_CONTACTS: Optional[List[str]] = None
+CITATION_URL: Optional[str] = "https://www.mdpi.com/2306-5729/7/6/75"
+AUTHORS: Optional[List[str]] = [
+    "Anton Naumov",
+    "Andrey Ivanov",
+    "Egor Ushakov",
+    "Evgeny Karpulevich",
+    "Tatiana Khovanskaya",
+    "Alexandra Konyukova",
+    "Konstantin Midiber",
+    "Nikita Rybak",
+    "Maria Ponomareva",
+    "Alesya Lesko",
+    "Ekaterina Volkova",
+    "Polina Vishnyakova",
+    "Sergey Nora",
+    "Liudmila Mikhaleva",
+    "Timur Fatkhudinov",
+]
+AUTHORS_CONTACTS: Optional[List[str]] = ["vandedok@ispras.ru", "ushakov@ispras.ru", "ivanov.as@ispras.ru", "midiberkonst@gmail.com", "zimavnebe@mail.ru", "have.to.study@yandex.ru", "vpa2002@mail.ru"]
 
-ORGANIZATION_NAME: Optional[Union[str, List[str]]] = None
-ORGANIZATION_URL: Optional[Union[str, List[str]]] = None
+ORGANIZATION_NAME: Optional[Union[str, List[str]]] = "Institute for System Programming of the Russian Academy of Sciences (ISP RAS), Russia"
+ORGANIZATION_URL: Optional[Union[str, List[str]]] = "https://www.ispras.ru/en/"
 
 # Set '__PRETEXT__' or '__POSTTEXT__' as a key with string value to add custom text. e.g. SLYTAGSPLIT = {'__POSTTEXT__':'some text}
-SLYTAGSPLIT: Optional[Dict[str, Union[List[str], str]]] = None
+SLYTAGSPLIT: Optional[Dict[str, Union[List[str], str]]] = {"annotators": [
+        "ptg1",
+        "ptg2",
+        "ptg3",
+        "stud1",
+        "stud2",
+        "stud3",
+        "stud4",
+    ], "study types":["preliminary", "hidden", "posterior"], "annotations types":["bulk", "agreement"]}
 TAGS: Optional[
     List[
         Literal[
