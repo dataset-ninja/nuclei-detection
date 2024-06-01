@@ -13,7 +13,7 @@ from dataset_tools.templates import (
 ##################################
 # * Before uploading to instance #
 ##################################
-PROJECT_NAME = "EndoNuke"
+PROJECT_NAME = "ENDONUKE"
 PROJECT_NAME_FULL = "EndoNuke: Nuclei Detection in Endometrium Samples"
 HIDE_DATASET = True  # set False when 100% sure about repo quality
 
